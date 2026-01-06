@@ -110,6 +110,6 @@ class __TwigTemplate_dad377d322bd8767b6d714dbd2b9fe94 extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block body \"Cookies\" %}", "static/cookies.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/static/cookies.html.twig");
+{% block body \"Cookies\" %}", "static/cookies.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/static/cookies.html.twig");
     }
 }

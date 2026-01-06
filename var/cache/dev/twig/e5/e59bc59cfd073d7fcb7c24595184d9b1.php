@@ -97,6 +97,6 @@ class __TwigTemplate_a2816295508c411f3a80631682b148a7 extends Template
     public function getSourceContext(): Source
     {
         return new Source("{% block panel '' %}
-", "@WebProfiler/Profiler/ajax_layout.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/ajax_layout.html.twig");
+", "@WebProfiler/Profiler/ajax_layout.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/ajax_layout.html.twig");
     }
 }

@@ -94,6 +94,6 @@ class __TwigTemplate_2230c6213d1e266c4654870daa6aed11 extends Template
     <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token('delete' ~ client.id) }}\">
     <button class=\"btn\">Delete</button>
 </form>
-", "client/_delete_form.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/client/_delete_form.html.twig");
+", "client/_delete_form.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/client/_delete_form.html.twig");
     }
 }

@@ -110,6 +110,6 @@ class __TwigTemplate_30c2c527742d4844730cfe423e55cabd extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block body \"Politique de Confidentialité\" %}", "static/politique_confidentialite.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/static/politique_confidentialite.html.twig");
+{% block body \"Politique de Confidentialité\" %}", "static/politique_confidentialite.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/static/politique_confidentialite.html.twig");
     }
 }

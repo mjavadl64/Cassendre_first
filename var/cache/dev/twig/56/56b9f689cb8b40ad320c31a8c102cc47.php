@@ -110,6 +110,6 @@ class __TwigTemplate_699c0944a7769b08583a17ee9888d4fc extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block body \"Accessibilité\" %}", "static/accessibilite.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/static/accessibilite.html.twig");
+{% block body \"Accessibilité\" %}", "static/accessibilite.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/static/accessibilite.html.twig");
     }
 }

@@ -676,6 +676,6 @@ class __TwigTemplate_af1d2172c3db807b364c521f6a890d3c extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@WebProfiler/Collector/notifier.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Collector/notifier.html.twig");
+", "@WebProfiler/Collector/notifier.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Collector/notifier.html.twig");
     }
 }

@@ -116,41 +116,27 @@ class __TwigTemplate_09d3e837cda5a971b29448c641cf45c8 extends Template
         yield "</td>
             </tr>
             <tr>
-                <th>Type</th>
-                <td>";
-        // line 20
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 20, $this->source); })()), "type", [], "any", false, false, false, 20), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
                 <th>Email</th>
                 <td>";
-        // line 24
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 24, $this->source); })()), "email", [], "any", false, false, false, 24), "html", null, true);
-        yield "</td>
-            </tr>
-            <tr>
-                <th>IsActive</th>
-                <td>";
-        // line 28
-        yield (((($tmp = CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 28, $this->source); })()), "isActive", [], "any", false, false, false, 28)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) ? ("Yes") : ("No"));
+        // line 20
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 20, $this->source); })()), "email", [], "any", false, false, false, 20), "html", null, true);
         yield "</td>
             </tr>
         </tbody>
     </table>
 
     <a href=\"";
-        // line 33
+        // line 25
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_client_index");
         yield "\">back to list</a>
 
     <a href=\"";
-        // line 35
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_client_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 35, $this->source); })()), "id", [], "any", false, false, false, 35)]), "html", null, true);
+        // line 27
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_client_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, (isset($context["client"]) || array_key_exists("client", $context) ? $context["client"] : (function () { throw new RuntimeError('Variable "client" does not exist.', 27, $this->source); })()), "id", [], "any", false, false, false, 27)]), "html", null, true);
         yield "\">edit</a>
 
     ";
-        // line 37
+        // line 29
         yield Twig\Extension\CoreExtension::include($this->env, $context, "client/_delete_form.html.twig");
         yield "
 ";
@@ -184,7 +170,7 @@ class __TwigTemplate_09d3e837cda5a971b29448c641cf45c8 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  154 => 37,  149 => 35,  144 => 33,  136 => 28,  129 => 24,  122 => 20,  115 => 16,  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
+        return array (  140 => 29,  135 => 27,  130 => 25,  122 => 20,  115 => 16,  108 => 12,  100 => 6,  87 => 5,  64 => 3,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -207,16 +193,8 @@ class __TwigTemplate_09d3e837cda5a971b29448c641cf45c8 extends Template
                 <td>{{ client.name }}</td>
             </tr>
             <tr>
-                <th>Type</th>
-                <td>{{ client.type }}</td>
-            </tr>
-            <tr>
                 <th>Email</th>
                 <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>IsActive</th>
-                <td>{{ client.isActive ? 'Yes' : 'No' }}</td>
             </tr>
         </tbody>
     </table>
@@ -227,6 +205,6 @@ class __TwigTemplate_09d3e837cda5a971b29448c641cf45c8 extends Template
 
     {{ include('client/_delete_form.html.twig') }}
 {% endblock %}
-", "client/show.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/client/show.html.twig");
+", "client/show.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/client/show.html.twig");
     }
 }

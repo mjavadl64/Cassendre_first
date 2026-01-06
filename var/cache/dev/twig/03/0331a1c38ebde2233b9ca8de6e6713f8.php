@@ -126,6 +126,6 @@ class __TwigTemplate_d6a6d0101bda87c5f52f85d527008d94 extends Template
 
     <div>© {{ \"now\"|date(\"Y\") }} - Cassandre System</div>
 </footer>
-", "partials/_footer.html.twig", "/home/javad/dev/Exercises/Cassandre-System/Cassandre-System/templates/partials/_footer.html.twig");
+", "partials/_footer.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/partials/_footer.html.twig");
     }
 }

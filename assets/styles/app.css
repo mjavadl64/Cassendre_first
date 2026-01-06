@@ -75,5 +75,12 @@ footer {
   border-top: 1px solid var(--green-dark);
 }
 
+.form-error-message,
+.form-errors,
+.invalid-feedback,
+ul li {
+    color: rgb(206, 112, 112);
+}
+
 /* CLIENT CONTENT */
 
