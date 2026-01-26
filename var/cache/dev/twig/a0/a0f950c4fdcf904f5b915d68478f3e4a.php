@@ -1119,6 +1119,6 @@ class __TwigTemplate_a988e3b1d50d3f205fea78362c51cec8 extends Template
         </table>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/config.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
+", "@WebProfiler/Collector/config.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/vendor/symfony/web-profiler-bundle/Resources/views/Collector/config.html.twig");
     }
 }

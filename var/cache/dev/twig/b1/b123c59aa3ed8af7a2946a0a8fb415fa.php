@@ -181,6 +181,6 @@ class __TwigTemplate_1d210b4fd29c93d2a0e2097becdf8841 extends Template
 {% block panel %}
     {{ render(controller('web_profiler.controller.router::panelAction', {token: token})) }}
 {% endblock %}
-", "@WebProfiler/Collector/router.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
+", "@WebProfiler/Collector/router.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
     }
 }

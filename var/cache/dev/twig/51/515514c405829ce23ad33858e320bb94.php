@@ -235,6 +235,6 @@ class __TwigTemplate_b246fe1f00536f7b79ee24280e8066f7 extends Template
 
     <a href=\"{{ path('app_client_new') }}\">Create new</a>
 {% endblock %}
-", "client/index.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/client/index.html.twig");
+", "client/index.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/client/index.html.twig");
     }
 }

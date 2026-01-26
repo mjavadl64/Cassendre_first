@@ -162,6 +162,6 @@ class __TwigTemplate_c8d8ce5fba6903bbf0eb4b5357d5756d extends Template
 
     {{ include('client/_delete_form.html.twig') }}
 {% endblock %}
-", "client/edit.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/client/edit.html.twig");
+", "client/edit.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/client/edit.html.twig");
     }
 }
