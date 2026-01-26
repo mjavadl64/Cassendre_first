@@ -420,14 +420,6 @@
         <argument type="service" id=".service_locator.TJNRSaV.App\Controller\AccueilController"/>
       </call>
     </service>
-    <service id="App\Controller\ClientController" class="App\Controller\ClientController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="routing.controller"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.TJNRSaV.App\Controller\ClientController"/>
-      </call>
-    </service>
     <service id="App\Controller\StaticController" class="App\Controller\StaticController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="routing.controller"/>
@@ -436,14 +428,49 @@
         <argument type="service" id=".service_locator.TJNRSaV.App\Controller\StaticController"/>
       </call>
     </service>
+    <service id="App\Entity\Audit" class="App\Entity\Audit" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
+    <service id="App\Entity\Certification" class="App\Entity\Certification" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
     <service id="App\Entity\Client" class="App\Entity\Client" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's a Doctrine entity"/>
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
     </service>
+    <service id="App\Entity\Role" class="App\Entity\Role" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
+    <service id="App\Entity\User" class="App\Entity\User" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
+    <service id="App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's an enum"/>
+    </service>
     <service id="App\Form\ClientType" class="App\Form\ClientType" autowire="true" autoconfigure="true">
       <tag name="form.type" csrf_token_id="%.form.type_extension.csrf.token_id%"/>
     </service>
+    <service id="App\Repository\AuditRepository" class="App\Repository\AuditRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\CertificationRepository" class="App\Repository\CertificationRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -475,7 +502,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" priority="-50">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.h4_LJNQ"/>
+      <argument type="service" id=".service_locator.8JS6QTA"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" priority="-100">controller.argument_value_resolver</tag>
@@ -3577,7 +3604,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.h4_LJNQ"/>
+      <argument type="service" id=".service_locator.8JS6QTA"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3660,7 +3687,6 @@
       <tag name="routing.loader" priority="-10"/>
       <argument type="collection">
         <argument>App\Controller\AccueilController</argument>
-        <argument>App\Controller\ClientController</argument>
         <argument>App\Controller\StaticController</argument>
       </argument>
     </service>
@@ -5574,7 +5600,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.II80Y6R"/>
+      <argument type="service" id=".service_locator.26x.N1L"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7706,20 +7732,34 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\AccueilController.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" abstract="true"/>
-    <service id=".instanceof.App\Controller\ClientController.0.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\ClientController" class="App\Controller\ClientController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\StaticController.0.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StaticController" class="App\Controller\StaticController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\Audit.0.App\Entity\Audit" class="App\Entity\Audit" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\Audit" class="App\Entity\Audit" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\Certification.0.App\Entity\Certification" class="App\Entity\Certification" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\Certification" class="App\Entity\Certification" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Client.0.App\Entity\Client" class="App\Entity\Client" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\Client" class="App\Entity\Client" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\Role.0.App\Entity\Role" class="App\Entity\Role" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\Role" class="App\Entity\Role" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\User.0.App\Entity\User" class="App\Entity\User" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\User" class="App\Entity\User" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.UnitEnum.0.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ClientType" class="App\Form\ClientType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ClientType" class="App\Form\ClientType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AuditRepository" class="App\Repository\AuditRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AuditRepository" class="App\Repository\AuditRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CertificationRepository" class="App\Repository\CertificationRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\CertificationRepository" class="App\Repository\CertificationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.ryAvHi4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8238,80 +8278,15 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.1vYpZ1B" method="withContext"/>
     </service>
-    <service id=".service_locator.DbhFNW6" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="clientRepository" type="service_closure" id="App\Repository\ClientRepository"/>
-      </argument>
-    </service>
-    <service id=".service_locator.DbhFNW6.App\Controller\ClientController::index()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController::index()"/>
-      <argument>App\Controller\ClientController::index()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.DbhFNW6" method="withContext"/>
-    </service>
-    <service id=".service_locator.3BoFVFw" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
-    <service id=".service_locator.3BoFVFw.App\Controller\ClientController::new()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController::new()"/>
-      <argument>App\Controller\ClientController::new()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.3BoFVFw" method="withContext"/>
-    </service>
-    <service id=".service_locator.5eYkN6Y" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="client" type="service_closure" id=".errored..service_locator.5eYkN6Y.App\Entity\Client"/>
-      </argument>
-    </service>
-    <service id=".service_locator.5eYkN6Y.App\Controller\ClientController::show()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController::show()"/>
-      <argument>App\Controller\ClientController::show()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.5eYkN6Y" method="withContext"/>
-    </service>
-    <service id=".service_locator.XgV966x" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="client" type="service_closure" id=".errored..service_locator.XgV966x.App\Entity\Client"/>
-        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
-      </argument>
-    </service>
-    <service id=".service_locator.XgV966x.App\Controller\ClientController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController::edit()"/>
-      <argument>App\Controller\ClientController::edit()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.XgV966x" method="withContext"/>
-    </service>
-    <service id=".service_locator.XgV966x.App\Controller\ClientController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController::delete()"/>
-      <argument>App\Controller\ClientController::delete()</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.XgV966x" method="withContext"/>
-    </service>
-    <service id=".service_locator.h4_LJNQ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.8JS6QTA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ClientController::index" type="service_closure" id=".service_locator.DbhFNW6.App\Controller\ClientController::index()"/>
-        <argument key="App\Controller\ClientController::new" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\ClientController::new()"/>
-        <argument key="App\Controller\ClientController::show" type="service_closure" id=".service_locator.5eYkN6Y.App\Controller\ClientController::show()"/>
-        <argument key="App\Controller\ClientController::edit" type="service_closure" id=".service_locator.XgV966x.App\Controller\ClientController::edit()"/>
-        <argument key="App\Controller\ClientController::delete" type="service_closure" id=".service_locator.XgV966x.App\Controller\ClientController::delete()"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.1vYpZ1B.kernel::registerContainerConfiguration()"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.1vYpZ1B.kernel::loadRoutes()"/>
-        <argument key="App\Controller\ClientController:index" type="service_closure" id=".service_locator.DbhFNW6.App\Controller\ClientController::index()"/>
-        <argument key="App\Controller\ClientController:new" type="service_closure" id=".service_locator.3BoFVFw.App\Controller\ClientController::new()"/>
-        <argument key="App\Controller\ClientController:show" type="service_closure" id=".service_locator.5eYkN6Y.App\Controller\ClientController::show()"/>
-        <argument key="App\Controller\ClientController:edit" type="service_closure" id=".service_locator.XgV966x.App\Controller\ClientController::edit()"/>
-        <argument key="App\Controller\ClientController:delete" type="service_closure" id=".service_locator.XgV966x.App\Controller\ClientController::delete()"/>
       </argument>
     </service>
     <service id=".service_locator.DA6YX9k" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8649,10 +8624,14 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.II80Y6R" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.26x.N1L" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\AuditRepository" type="service_closure" id="App\Repository\AuditRepository"/>
+        <argument key="App\Repository\CertificationRepository" type="service_closure" id="App\Repository\CertificationRepository"/>
         <argument key="App\Repository\ClientRepository" type="service_closure" id="App\Repository\ClientRepository"/>
+        <argument key="App\Repository\RoleRepository" type="service_closure" id="App\Repository\RoleRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
     <service id=".service_locator.W55Po6X" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -8927,12 +8906,6 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.TJNRSaV" method="withContext"/>
     </service>
-    <service id=".service_locator.TJNRSaV.App\Controller\ClientController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\ClientController"/>
-      <argument>App\Controller\ClientController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.TJNRSaV" method="withContext"/>
-    </service>
     <service id=".service_locator.TJNRSaV.App\Controller\StaticController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\StaticController"/>
       <argument>App\Controller\StaticController</argument>
@@ -9139,7 +9112,6 @@
         <argument type="collection">
           <argument>App\Kernel</argument>
           <argument>App\Controller\AccueilController</argument>
-          <argument>App\Controller\ClientController</argument>
           <argument>App\Controller\StaticController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
         </argument>
@@ -9372,12 +9344,6 @@
     </service>
     <service id=".errored..service_locator.1vYpZ1B.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.1vYpZ1B&quot;: it needs an instance of &quot;Symfony\Component\Config\Loader\LoaderInterface&quot; but this type has been excluded from autowiring."/>
-    </service>
-    <service id=".errored..service_locator.5eYkN6Y.App\Entity\Client" class="App\Entity\Client">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.5eYkN6Y&quot;: it needs an instance of &quot;App\Entity\Client&quot; but this type has been excluded because it's a Doctrine entity."/>
-    </service>
-    <service id=".errored..service_locator.XgV966x.App\Entity\Client" class="App\Entity\Client">
-      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.XgV966x&quot;: it needs an instance of &quot;App\Entity\Client&quot; but this type has been excluded because it's a Doctrine entity."/>
     </service>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>about</argument>
@@ -10605,7 +10571,7 @@
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.ryAvHi4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.h4_LJNQ"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.8JS6QTA"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.W55Po6X"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".Psr\Log\LoggerInterface $request.logger" alias="monolog.logger.request"/>
@@ -10664,10 +10630,6 @@
     <service id=".signing.messenger.default_serializer.inner" alias="messenger.transport.native_php_serializer"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.c0wzfI4" alias=".service_locator.1vYpZ1B"/>
-    <service id=".service_locator.dNiCrkC" alias=".service_locator.DbhFNW6"/>
-    <service id=".service_locator.UOV1jy9" alias=".service_locator.3BoFVFw"/>
-    <service id=".service_locator.MB_KOr7" alias=".service_locator.5eYkN6Y"/>
-    <service id=".service_locator.t_mPnw5" alias=".service_locator.XgV966x"/>
     <service id=".service_locator.D6tJ4Px" alias=".service_locator.TJNRSaV"/>
   </services>
 </container>
