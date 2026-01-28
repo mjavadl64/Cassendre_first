@@ -440,6 +440,10 @@
       <tag name="container.excluded" source="because it's a Doctrine entity"/>
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
     </service>
+    <service id="App\Entity\Invoice" class="App\Entity\Invoice" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's a Doctrine entity"/>
+      <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
+    </service>
     <service id="App\Entity\Role" class="App\Entity\Role" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's a Doctrine entity"/>
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
@@ -449,6 +453,12 @@
       <tag name="container.excluded" source="with #[Doctrine\ORM\Mapping\Entity] attribute"/>
     </service>
     <service id="App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's an enum"/>
+    </service>
+    <service id="App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's an enum"/>
+    </service>
+    <service id="App\Enum\Invoice_type" class="App\Enum\Invoice_type" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's an enum"/>
     </service>
     <service id="App\Form\ClientType" class="App\Form\ClientType" autowire="true" autoconfigure="true">
@@ -463,6 +473,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\InvoiceRepository" class="App\Repository\InvoiceRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -5600,7 +5614,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.26x.N1L"/>
+      <argument type="service" id=".service_locator.W5NJYay"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7742,12 +7756,18 @@
     <service id=".abstract.instanceof.App\Entity\Certification" class="App\Entity\Certification" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Client.0.App\Entity\Client" class="App\Entity\Client" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\Client" class="App\Entity\Client" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.App\Entity\Invoice.0.App\Entity\Invoice" class="App\Entity\Invoice" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Entity\Invoice" class="App\Entity\Invoice" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\Role.0.App\Entity\Role" class="App\Entity\Role" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\Role" class="App\Entity\Role" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.App\Entity\User.0.App\Entity\User" class="App\Entity\User" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Entity\User" class="App\Entity\User" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.UnitEnum.0.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.UnitEnum.0.App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.UnitEnum.0.App\Enum\Invoice_type" class="App\Enum\Invoice_type" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Enum\Invoice_type" class="App\Enum\Invoice_type" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ClientType" class="App\Form\ClientType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ClientType" class="App\Form\ClientType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AuditRepository" class="App\Repository\AuditRepository" autowire="true" abstract="true"/>
@@ -7756,6 +7776,8 @@
     <service id=".abstract.instanceof.App\Repository\CertificationRepository" class="App\Repository\CertificationRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ClientRepository" class="App\Repository\ClientRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\InvoiceRepository" class="App\Repository\InvoiceRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\InvoiceRepository" class="App\Repository\InvoiceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\RoleRepository" class="App\Repository\RoleRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -8624,12 +8646,13 @@
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.26x.N1L" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.W5NJYay" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AuditRepository" type="service_closure" id="App\Repository\AuditRepository"/>
         <argument key="App\Repository\CertificationRepository" type="service_closure" id="App\Repository\CertificationRepository"/>
         <argument key="App\Repository\ClientRepository" type="service_closure" id="App\Repository\ClientRepository"/>
+        <argument key="App\Repository\InvoiceRepository" type="service_closure" id="App\Repository\InvoiceRepository"/>
         <argument key="App\Repository\RoleRepository" type="service_closure" id="App\Repository\RoleRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>

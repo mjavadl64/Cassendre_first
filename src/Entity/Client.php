@@ -57,10 +57,17 @@ class Client
     #[ORM\OneToMany(targetEntity: Audit::class, mappedBy: 'client')]
     private Collection $audit;
 
+    /**
+     * @var Collection<int, Invoice>
+     */
+    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'client')]
+    private Collection $invoices;
+
     public function __construct()
     {
         $this->certification = new ArrayCollection();
         $this->audit = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +170,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($audit->getClient() === $this) {
                 $audit->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invoice>
+     */
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function addInvoice(Invoice $invoice): static
+    {
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices->add($invoice);
+            $invoice->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): static
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getClient() === $this) {
+                $invoice->setClient(null);
             }
         }
 
