@@ -28,19 +28,20 @@ class Certification
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $file_path = null;
 
-    /**
-     * @var Collection<int, Client>
-     */
-    #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'certification')]
-    private Collection $clients;
-
     #[ORM\ManyToOne(inversedBy: 'certification')]
     private ?Invoice $invoice = null;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'certification')]
+    private Collection $users;
+
     public function __construct()
     {
-        $this->clients = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -95,33 +96,6 @@ class Certification
         return $this;
     }
 
-    /**
-     * @return Collection<int, Client>
-     */
-    public function getClients(): Collection
-    {
-        return $this->clients;
-    }
-
-    public function addClient(Client $client): static
-    {
-        if (!$this->clients->contains($client)) {
-            $this->clients->add($client);
-            $client->addCertification($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClient(Client $client): static
-    {
-        if ($this->clients->removeElement($client)) {
-            $client->removeCertification($this);
-        }
-
-        return $this;
-    }
-
     public function getInvoice(): ?Invoice
     {
         return $this->invoice;
@@ -130,6 +104,33 @@ class Certification
     public function setInvoice(?Invoice $invoice): static
     {
         $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): static
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addCertification($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): static
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeCertification($this);
+        }
 
         return $this;
     }

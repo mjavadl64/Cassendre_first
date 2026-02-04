@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\Client_status;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -28,29 +29,9 @@ class Client
         minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
         maxMessage: "Le nom ne doit pas dépasser {{ limit }} caractères."
     )]
-    private ?string $name = null;
+    private ?string $company_name = null;
 
-    #[ORM\Column(length: 100)]
-    #[Assert\NotBlank(message: "L'email est obligatoire.")]
-    #[Assert\Email(message: "L'adresse email'{{ value }}' n'est pas valide.")]
-    #[Assert\Length(
-        max: 100,
-        maxMessage: "L'email ne doit pas dépasser {{ limit }} caractères."
-    )]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 100)]
-    private ?string $password = null;
-
-    #[ORM\Column(length: 20, nullable: true)]
-    private ?string $siret = null;
-
-    /**
-     * @var Collection<int, Certification>
-     */
-    #[ORM\ManyToMany(targetEntity: Certification::class, inversedBy: 'clients')]
-    private Collection $certification;
-
+   
     /**
      * @var Collection<int, Audit>
      */
@@ -63,9 +44,26 @@ class Client
     #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'client')]
     private Collection $invoices;
 
+    #[ORM\OneToOne(mappedBy: 'client', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $siret_number = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $adress = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $city = null;
+
+    #[ORM\Column(length: 15)]
+    private ?string $postal_code = null;
+
+    #[ORM\Column(enumType: Client_status::class)]
+    private ?Client_status $status = null;
+
     public function __construct()
     {
-        $this->certification = new ArrayCollection();
         $this->audit = new ArrayCollection();
         $this->invoices = new ArrayCollection();
     }
@@ -75,76 +73,18 @@ class Client
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getCompanyName(): ?string
     {
-        return $this->name;
+        return $this->company_name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $company_name): static
     {
-        $this->name = $name;
+        $this->company_name = $company_name;
 
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-        public function getSiret(): ?string
-    {
-        return $this->siret;
-    }
-
-    public function setSiret(?string $siret): static
-    {
-        $this->siret = $siret;
-
-        return $this;
-    }
-        public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Certification>
-     */
-    public function getCertification(): Collection
-    {
-        return $this->certification;
-    }
-
-    public function addCertification(Certification $certification): static
-    {
-        if (!$this->certification->contains($certification)) {
-            $this->certification->add($certification);
-        }
-
-        return $this;
-    }
-
-    public function removeCertification(Certification $certification): static
-    {
-        $this->certification->removeElement($certification);
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Audit>
@@ -202,6 +142,88 @@ class Client
                 $invoice->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setClient(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getClient() !== $this) {
+            $user->setClient($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSiretNumber(): ?string
+    {
+        return $this->siret_number;
+    }
+
+    public function setSiretNumber(string $siret_number): static
+    {
+        $this->siret_number = $siret_number;
+
+        return $this;
+    }
+
+    public function getAdress(): ?string
+    {
+        return $this->adress;
+    }
+
+    public function setAdress(string $adress): static
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): static
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postal_code;
+    }
+
+    public function setPostalCode(string $postal_code): static
+    {
+        $this->postal_code = $postal_code;
+
+        return $this;
+    }
+
+    public function getStatus(): ?Client_status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(Client_status $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

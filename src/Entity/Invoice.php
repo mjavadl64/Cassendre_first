@@ -186,7 +186,7 @@ class Invoice
         return $this->client;
     }
 
-    public function setClient(Client $client): static
+    public function setClient(?Client $client): static
     {
         $this->client = $client;
 

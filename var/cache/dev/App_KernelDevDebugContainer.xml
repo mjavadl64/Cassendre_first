@@ -455,6 +455,9 @@
     <service id="App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's an enum"/>
     </service>
+    <service id="App\Enum\Client_status" class="App\Enum\Client_status" autowire="true" autoconfigure="true">
+      <tag name="container.excluded" source="because it's an enum"/>
+    </service>
     <service id="App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" autoconfigure="true">
       <tag name="container.excluded" source="because it's an enum"/>
     </service>
@@ -6969,7 +6972,7 @@
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument type="abstract">Provider Key</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -7095,7 +7098,7 @@
     </service>
     <service id="security.listener.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="1024" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.listener.user_provider.abstract" class="Symfony\Component\Security\Http\EventListener\UserProviderListener" abstract="true">
       <argument type="abstract">user provider</argument>
@@ -7333,8 +7336,11 @@
         <argument>Display information about your security firewall(s)</argument>
       </call>
     </service>
-    <service id="security.user.provider.concrete.users_in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider">
-      <argument type="collection"/>
+    <service id="security.user.provider.concrete.app_user_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider">
+      <argument type="service" id="doctrine"/>
+      <argument>App\Entity\User</argument>
+      <argument>email</argument>
+      <argument>null</argument>
     </service>
     <service id="security.firewall.map.config.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>dev</argument>
@@ -7371,7 +7377,7 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.users_in_memory</argument>
+      <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
       <argument>null</argument>
       <argument>null</argument>
@@ -7382,7 +7388,7 @@
     </service>
     <service id="security.listener.main.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" dispatcher="debug.security.event_dispatcher.main" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="2048" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.user_checker.chain.main" class="Symfony\Component\Security\Core\User\ChainUserChecker">
       <argument type="tagged_iterator" tag="security.user_checker.main"/>
@@ -7392,7 +7398,7 @@
       <tag name="container.hot_path"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument>main</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -7764,6 +7770,8 @@
     <service id=".abstract.instanceof.App\Entity\User" class="App\Entity\User" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.UnitEnum.0.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Enum\Audit_status" class="App\Enum\Audit_status" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.UnitEnum.0.App\Enum\Client_status" class="App\Enum\Client_status" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Enum\Client_status" class="App\Enum\Client_status" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.UnitEnum.0.App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Enum\Invoice_status" class="App\Enum\Invoice_status" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.UnitEnum.0.App\Enum\Invoice_type" class="App\Enum\Invoice_type" autowire="true" abstract="true"/>
@@ -10584,8 +10592,8 @@
     <service id="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface" alias="security.user_password_hasher"/>
     <service id="Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface" alias="security.user_authenticator"/>
     <service id="security.firewall" alias="debug.security.firewall"/>
-    <service id="security.user_providers" alias="security.user.provider.concrete.users_in_memory"/>
-    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.users_in_memory"/>
+    <service id="security.user_providers" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
     <service id="security.user_checker.main" alias="security.user_checker"/>
     <service id="security.firewall.context_locator" alias=".service_locator.Bz.C4As"/>
