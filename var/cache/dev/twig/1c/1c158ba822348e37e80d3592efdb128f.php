@@ -53,10 +53,6 @@ class __TwigTemplate_cabfd2aa1b92fa958d9b987b9653470a extends Template
         // line 5
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_accueil");
         yield "\" class=\"navbar-link\">Accueil</a>
-        <a href=\"";
-        // line 6
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_client_index");
-        yield "\" class=\"navbar-link\">Client</a>
     </nav>
 </header>
 ";
@@ -90,7 +86,7 @@ class __TwigTemplate_cabfd2aa1b92fa958d9b987b9653470a extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  58 => 6,  54 => 5,  48 => 1,);
+        return array (  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -100,7 +96,6 @@ class __TwigTemplate_cabfd2aa1b92fa958d9b987b9653470a extends Template
 
     <nav class=\"navbar-menu\">
         <a href=\"{{ path('app_accueil') }}\" class=\"navbar-link\">Accueil</a>
-        <a href=\"{{ path('app_client_index') }}\" class=\"navbar-link\">Client</a>
     </nav>
 </header>
 ", "partials/_header.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/partials/_header.html.twig");

@@ -110,6 +110,6 @@ class __TwigTemplate_491c64e9bd76ef1b6803ee7304dbc62f extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block body \"CGV\" %}", "static/cgv.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/static/cgv.html.twig");
+{% block body \"CGV\" %}", "static/cgv.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/static/cgv.html.twig");
     }
 }

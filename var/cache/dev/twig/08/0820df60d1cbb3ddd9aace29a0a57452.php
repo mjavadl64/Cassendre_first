@@ -233,6 +233,6 @@ class __TwigTemplate_9744aba34e5f46a770ed4c0303283e73 extends Template
     word-wrap: break-word;
     word-break: break-all;
 }
-", "@WebProfiler/Profiler/open.css.twig", "/home/javad/dev/Mon Git/Cassandre-System/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.css.twig");
+", "@WebProfiler/Profiler/open.css.twig", "/home/javad/Dev/Cassandre/Cassendre_first/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.css.twig");
     }
 }

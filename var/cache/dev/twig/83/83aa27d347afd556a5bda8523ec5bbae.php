@@ -110,6 +110,6 @@ class __TwigTemplate_4482b9f78a1d12c67eb5843e54ec4ea3 extends Template
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block body \"Mentions Légales\" %}", "static/mentions_legales.html.twig", "/home/javad/dev/Mon Git/Cassandre-System/templates/static/mentions_legales.html.twig");
+{% block body \"Mentions Légales\" %}", "static/mentions_legales.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/static/mentions_legales.html.twig");
     }
 }
