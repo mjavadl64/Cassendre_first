@@ -51,7 +51,7 @@ class __TwigTemplate_cabfd2aa1b92fa958d9b987b9653470a extends Template
     <nav class=\"navbar-menu\">
         <a href=\"";
         // line 5
-        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_accueil");
+        yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home");
         yield "\" class=\"navbar-link\">Accueil</a>
     </nav>
 </header>
@@ -95,7 +95,7 @@ class __TwigTemplate_cabfd2aa1b92fa958d9b987b9653470a extends Template
     <div class=\"navbar-brand\">Cassandre System</div>
 
     <nav class=\"navbar-menu\">
-        <a href=\"{{ path('app_accueil') }}\" class=\"navbar-link\">Accueil</a>
+        <a href=\"{{ path('home') }}\" class=\"navbar-link\">Accueil</a>
     </nav>
 </header>
 ", "partials/_header.html.twig", "/home/javad/Dev/Cassandre/Cassendre_first/templates/partials/_header.html.twig");

@@ -437,20 +437,20 @@
         <argument>Crée un utilisateur avec un mot de passe hashé et des rôles.</argument>
       </call>
     </service>
-    <service id="App\Controller\AccueilController" class="App\Controller\AccueilController" public="true" autowire="true" autoconfigure="true">
-      <tag name="controller.service_arguments"/>
-      <tag name="routing.controller"/>
-      <tag name="container.service_subscriber"/>
-      <call method="setContainer">
-        <argument type="service" id=".service_locator.TJNRSaV.App\Controller\AccueilController"/>
-      </call>
-    </service>
     <service id="App\Controller\AdminController" class="App\Controller\AdminController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="routing.controller"/>
       <tag name="container.service_subscriber"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.TJNRSaV.App\Controller\AdminController"/>
+      </call>
+    </service>
+    <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="routing.controller"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.TJNRSaV.App\Controller\HomeController"/>
       </call>
     </service>
     <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
@@ -531,6 +531,9 @@
     <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\AccessDeniedHandler" class="App\Security\AccessDeniedHandler" autowire="true" autoconfigure="true">
+      <argument type="service" id="router.default"/>
     </service>
     <service id="App\Security\Authenticator" class="App\Security\Authenticator" autowire="true" autoconfigure="true">
       <argument type="service" id="router.default"/>
@@ -3764,8 +3767,8 @@
     <service id="routing.loader.attribute.services" class="Symfony\Component\Routing\Loader\AttributeServicesLoader">
       <tag name="routing.loader" priority="-10"/>
       <argument type="collection">
-        <argument>App\Controller\AccueilController</argument>
         <argument>App\Controller\AdminController</argument>
+        <argument>App\Controller\HomeController</argument>
         <argument>App\Controller\SecurityController</argument>
         <argument>App\Controller\StaticController</argument>
       </argument>
@@ -6479,6 +6482,14 @@
         <argument>!Debug</argument>
       </call>
       <call method="addPath">
+        <argument>/home/javad/Dev/Cassandre/Cassendre_first/templates/bundles/TwigBundle</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>/home/javad/Dev/Cassandre/Cassendre_first/templates/bundles/TwigBundle</argument>
+        <argument>!Twig</argument>
+      </call>
+      <call method="addPath">
         <argument>/home/javad/Dev/Cassandre/Cassendre_first/vendor/symfony/web-profiler-bundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
@@ -7473,7 +7484,7 @@
       <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
       <argument>App\Security\Authenticator</argument>
-      <argument>null</argument>
+      <argument>App\Security\AccessDeniedHandler</argument>
       <argument>null</argument>
       <argument type="collection">
         <argument>remember_me</argument>
@@ -7679,7 +7690,7 @@
       <argument>main</argument>
       <argument type="service" id="App\Security\Authenticator"/>
       <argument>null</argument>
-      <argument>null</argument>
+      <argument type="service" id="App\Security\AccessDeniedHandler"/>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
     </service>
@@ -8016,14 +8027,14 @@
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Command\CreateUserCommand.0.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\CreateUserCommand" class="App\Command\CreateUserCommand" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
-    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
-    <service id=".instanceof.App\Controller\AccueilController.0.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Controller\AccueilController" class="App\Controller\AccueilController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\AdminController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Controller\HomeController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Controller\SecurityController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
@@ -9277,15 +9288,15 @@
         <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
       </argument>
     </service>
-    <service id=".service_locator.TJNRSaV.App\Controller\AccueilController" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator_context" id="App\Controller\AccueilController"/>
-      <argument>App\Controller\AccueilController</argument>
-      <argument type="service" id="service_container"/>
-      <factory service=".service_locator.TJNRSaV" method="withContext"/>
-    </service>
     <service id=".service_locator.TJNRSaV.App\Controller\AdminController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\AdminController"/>
       <argument>App\Controller\AdminController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.TJNRSaV" method="withContext"/>
+    </service>
+    <service id=".service_locator.TJNRSaV.App\Controller\HomeController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\HomeController"/>
+      <argument>App\Controller\HomeController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.TJNRSaV" method="withContext"/>
     </service>
@@ -9506,8 +9517,8 @@
       <call method="allowControllers">
         <argument type="collection">
           <argument>App\Kernel</argument>
-          <argument>App\Controller\AccueilController</argument>
           <argument>App\Controller\AdminController</argument>
+          <argument>App\Controller\HomeController</argument>
           <argument>App\Controller\SecurityController</argument>
           <argument>App\Controller\StaticController</argument>
           <argument>Doctrine\Bundle\DoctrineBundle\Controller\ProfilerController</argument>
